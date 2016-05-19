@@ -1,4 +1,5 @@
 //chmod
+console.log('hi');
 var express = require('express');
 var partials = require('express-partials');
 var bodyParser = require('body-parser');
