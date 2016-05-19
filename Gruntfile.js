@@ -3,7 +3,12 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      dist: {
+        src: 'public/client/*.js',
+        dest: './public/dist/built.js'
+      }
     },
+
 
     mochaTest: {
       test: {
@@ -21,12 +26,19 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      dist: {
+        files: { 
+          './public/dist/builtmin.js': './public/dist/built.js'
+        }
+      }
     },
 
     eslint: {
-      target: [
+      options: {
+        configFile: './node_modules/grunt-eslint/node_modules/eslint/conf/eslint.json'
+      },
+      target: './public/dist/built.js'
         // Add list of files to lint here
-      ]
     },
 
     cssmin: {
@@ -76,8 +88,20 @@ module.exports = function(grunt) {
     'mochaTest'
   ]);
 
-  grunt.registerTask('build', [
-  ]);
+  grunt.registerTask('default', [ 'build' ]);
+  grunt.registerTask('taco', [ 'eslint' ]);
+
+  grunt.registerTask('build', function() {
+  // [ 'concat', 'eslint', 'uglify' ]);
+    grunt.task.run([ 'concat' ]);
+
+    if (grunt.task.run([ 'eslint' ])) {
+      grunt.task.run([ 'uglify' ]);
+    } else {
+      grunt.log.error('Error');
+      return false;
+    }
+  });
 
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {

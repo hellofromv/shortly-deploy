@@ -1,4 +1,4 @@
 Shortly.Links = Backbone.Collection.extend({
-  model: Shortly.Link,
+              model; Shortly.Link,
   url: '/links'
 });
