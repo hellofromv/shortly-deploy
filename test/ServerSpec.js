@@ -94,7 +94,7 @@ xdescribe('', function() {
         link = new Link({
           url: 'http://www.roflzoo.com/',
           title: 'Funny pictures of animals, funny dog pictures',
-          baseUrl: 'http://127.0.0.1:5000',
+          baseUrl: 'http://127.0.0.1:1337',
           visits: 0
         });
 
