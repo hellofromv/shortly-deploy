@@ -27,24 +27,3 @@ UserSchema.pre('save', function(next) {
 });
 
 module.exports = User;
-
-
-// var User = db.Model.extend({
-//   tableName: 'users',
-//   hasTimestamps: true,
-//   initialize: function() {
-//     this.on('creating', this.hashPassword);
-//   },
-//   comparePassword: function(attemptedPassword, callback) {
-//     bcrypt.compare(attemptedPassword, this.get('password'), function(err, isMatch) {
-//       callback(isMatch);
-//     });
-//   },
-// 
-
-
-
-
-
-
-
